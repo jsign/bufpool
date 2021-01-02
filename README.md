@@ -23,7 +23,7 @@ This library takes a different approach. It manages a single `sync.Pool` of _big
 ## Configuration
 This library has two knobs:
 1. `sz`: The size of the shards.
-2. `maxRetries` (opt, default `0`): Maximum retries to find a suitable shard before making a new one.
+2. `maxRetries` (opt, default `1`): Maximum retries to find a suitable shard before making a new one.
 
 ## How it works
 Whenever a new request of size `n` is received, a shard is pulled from the `sync.Pool` and checked if it contains enough free space for the request. If that is not the case, it will retry `maxRetries` times to see if other shards can fit the request. A new shard is created if none is found.
